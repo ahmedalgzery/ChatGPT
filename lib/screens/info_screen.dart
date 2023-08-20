@@ -5,25 +5,29 @@ import 'package:url_launcher/url_launcher.dart';
 
 class InfoScreen extends StatelessWidget {
   const InfoScreen({super.key});
+  Future<void> launchInBrowser(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: const Color.fromARGB(255, 44, 116, 179),
-      ),
-      backgroundColor: const Color.fromARGB(255, 44, 116, 179),
+      backgroundColor: const Color.fromARGB(255, 89, 170, 241),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Stack(alignment: Alignment.center, children: const [
+              const Stack(alignment: Alignment.center, children: [
                 CircleAvatar(
                   radius: 104.0,
-                  backgroundColor: Color.fromARGB(255, 10, 38, 71),
+                  backgroundColor: Colors.white,
                 ),
                 CircleAvatar(
                   radius: 100.0,
@@ -48,7 +52,7 @@ class InfoScreen extends StatelessWidget {
                 'Flutter Devolper',
                 style: TextStyle(
                   fontSize: 20.0,
-                  color: Color.fromARGB(255, 10, 38, 71),
+                  color: Colors.white,
                 ),
               ),
               const Divider(
@@ -68,109 +72,12 @@ class InfoScreen extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () async {
-                    const url = '+201013784288';
-                    final uri = Uri.parse(url);
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
+                    launchInBrowser(Uri.parse(
+                        'https://www.linkedin.com/in/%D9%90%D9%90ahmed-algzery/'));
                   },
-                  child: Row(
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(left: 6.0, right: 6.0),
-                        child: Icon(
-                          Icons.call,
-                          color: Colors.blue,
-                          size: 28.0,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      Text(
-                        'Call Now',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20.0,
-                          color: Color.fromARGB(255, 10, 38, 71),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              Container(
-                width: 250,
-                height: 40.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.white,
-                ),
-                child: TextButton(
-                  onPressed: () async {
-                    const url = 'algzeryahmed14@gmail.com';
-                    final uri = Uri.parse(url);
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                  child: Row(
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(left: 6.0, right: 6.0),
-                        child: Icon(
-                          
-                          Icons.mail,
-                          color: Colors.blue,
-                          size: 28.0,
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      Text(
-                        'Send Email',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 10, 38, 71),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              Container(
-                width: 250,
-                height: 40.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: Colors.white,
-                ),
-                child: TextButton(
-                  onPressed: () async {
-                    const url =
-                        'https://www.linkedin.com/in/%D9%90%D9%90ahmed-algzery/';
-                    final uri = Uri.parse(url);
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
+                    children: [
                       CircleAvatar(
                         radius: 22.0,
                         backgroundImage: AssetImage('images/linkedin.png'),
@@ -202,18 +109,12 @@ class InfoScreen extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () async {
-                    const url =
-                        'https://www.facebook.com/profile.php?id=100014851561834';
-                    final uri = Uri.parse(url);
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
+                    launchInBrowser(Uri.parse(
+                        'https://www.facebook.com/profile.php?id=100014851561834'));
                   },
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
+                    children: [
                       CircleAvatar(
                         radius: 22.0,
                         backgroundImage: AssetImage('images/facebook.png'),
@@ -246,23 +147,17 @@ class InfoScreen extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: () async {
-                    const url = 'https://github.com/ahmedalgzery';
-                    final uri = Uri.parse(url);
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
+                    launchInBrowser(
+                        Uri.parse('https://github.com/ahmedalgzery'));
                   },
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
+                    children: [
                       CircleAvatar(
                         backgroundColor: Colors.white,
                         radius: 22.0,
                         backgroundImage: AssetImage('images/github.png'),
                       ),
-                      // Image.asset('images/linkedin.png'),
                       SizedBox(
                         width: 20.0,
                       ),
